@@ -75,7 +75,9 @@ public class FlowControl {
     @XmlElements(value = {
         @XmlElement(name = "Converter", type = Converter.class)
         , @XmlElement(name = "RestCall", type = RestCall.class)
-        , @XmlElement(name = "Response", type = Response.class)})
+        , @XmlElement(name = "Response", type = Response.class)
+        , @XmlElement(name = "Step", type = Step.class)
+    })
     protected List<Object> converterOrRestCallOrResponse;
     @XmlAttribute(name = "name")
     protected String name;
@@ -89,6 +91,8 @@ public class FlowControl {
     protected String flowClass;
     @XmlAttribute(name = "inputType")
     protected String inputType;
+    @XmlAttribute(name = "configFile")
+    protected String configFile;
 
     /**
      * Gets the value of the converterOrRestCallOrResponse property.

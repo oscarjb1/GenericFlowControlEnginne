@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlowControls xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.pr.americas.com/genericFlowControl/config" xsi:schemaLocation="http://xmlns.pr.americas.com/genericFlowControl/config FlowControls.xsd">
-	<FlowControl name="xmlCurrency" discriminator="CurrenciRequest" complexDiscriminatorClass="" cannonicalConverterClass="com.pr.gfce.converter.impl.XMLExchangeCannonical" inputType="xml">
+	<!--FlowControl name="xmlCurrency" discriminator="CurrenciRequest" complexDiscriminatorClass="" cannonicalConverterClass="com.pr.gfce.converter.impl.XMLExchangeCannonical" inputType="xml">
             <Converter name="parseRequest" class="com.pr.gfce.converter.impl.FixerRequestConverter" inputVar="payload" outputVar="exchangeRequest"/>
-            <RestCall name="ExchangeAPI" method="GET" url="http://api.fixer.io/latest?symbols=USD,GBP" input="exchangeRequest" output="exchangeResponse"/>
+            <RestCall name="ExchangeAPI" method="GET" url="http://api.fixer.io/latest" input="exchangeRequest" output="exchangeResponse"/>
             <Converter name="parseResponse" class="com.pr.gfce.converter.impl.FirexResponseConverter" inputVar="exchangeResponse" outputVar="response"/>
             <Response responseVar="response"/>
         </FlowControl>
         <FlowControl name="jsonCurrency" discriminator="pair" complexDiscriminatorClass="" cannonicalConverterClass="com.pr.gfce.converter.impl.JSONExchangeCannonical" inputType="json">
             <Converter name="parseRequest" class="com.pr.gfce.converter.impl.FixerRequestConverter" inputVar="payload" outputVar="exchangeRequest"/>
-            <RestCall name="ExchangeAPI" method="GET" url="http://api.fixer.io/latest?symbols=USD,GBP" input="exchangeRequest" output="exchangeResponse"/>
+            <RestCall name="ExchangeAPI" method="GET" url="http://api.fixer.io/latest" input="exchangeRequest" output="exchangeResponse"/>
             <Converter name="parseResponse" class="com.pr.gfce.converter.impl.FirexResponseConverter" inputVar="exchangeResponse" outputVar="response"/>
             <Response responseVar="response"/>
+        </FlowControl-->
+        
+        <FlowControl name="jsonCurrency" discriminator="pair" complexDiscriminatorClass="" cannonicalConverterClass="com.pr.gfce.converter.impl.JSONExchangeCannonical" inputType="json" configFile="configuration.properties">
+            <Step name="runningBam" class="com.pr.gfce.controls.BAMRunningControlProcess" />
+            <Step name="QueryExchange" class="com.pr.gfce.controls.ExchangeControlProcess" />
+            <Step name="completedBam" class="com.pr.gfce.controls.BAMCompletedControlProcess" />
+            <Step name="response" class="com.pr.gfce.controls.BAMCompletedControlProcess" />
         </FlowControl>
 </FlowControls>

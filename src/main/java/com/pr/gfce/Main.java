@@ -13,8 +13,8 @@ import com.sun.org.glassfish.gmbal.util.GenericConstructor;
 public class Main {
     public static void main(String[] args)throws Exception {
         GenericControlEngineExecutor executor = GenericControlEngineExecutor.getInstance();
-        String input = FileUtil.loadResource("META-INF/XMLRequest.xml");
-        //String input = FileUtil.loadResource("META-INF/JSONRequest.json");
+        //String input = FileUtil.loadResource("META-INF/XMLRequest.xml");
+        String input = FileUtil.loadResource("META-INF/JSONRequest.json");
         System.out.println("INPUT ==> ");
         System.out.println(input);
         String response = executor.ejecute(input);

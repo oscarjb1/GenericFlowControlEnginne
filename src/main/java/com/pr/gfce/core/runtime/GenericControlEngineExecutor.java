@@ -8,8 +8,11 @@ import com.pr.gfce.exception.InvalidFlowException;
 import com.pr.gfce.exception.ValidateException;
 import com.pr.gfce.util.FileUtil;
 import com.pr.gfce.util.JsonConverter;
+import com.pr.gfce.util.ReflectionUtil;
 import com.pr.gfce.util.XMLConverter;
 import java.io.InputStream;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -20,6 +23,7 @@ public class GenericControlEngineExecutor {
     private static GenericControlEngineExecutor ejecutor;
     private static final String CONFIG_FLOW_PATH = "META-INF/FlowControls.xml";
     private static FlowControls flows;
+    private Map<String,Class> stepClases;
     
     private GenericControlEngineExecutor() {
         try {
@@ -60,7 +64,8 @@ public class GenericControlEngineExecutor {
         for (FlowControl flow : flows.getFlowControl()) {
             if(flow.getInputType().toLowerCase().equals(type) && flow.getDiscriminator().equals(root)){
                 System.out.println("Flow match ==> " + flow.getName());
-                return new DefaultFlowControlProcess(flow,input).process().toString();
+                Object obj = new DefaultFlowControlProcess(flow,input).process();
+                return (obj == null ? "" : obj.toString());
             }
         }
         throw new InvalidFlowException("Flow not match ==> ");

@@ -67,6 +67,10 @@ public class ObjectFactory {
     public RestCall createFlowControlsFlowControlRestCall() {
         return new RestCall();
     }
+    
+    public Step createFlowControlsFlowControlStep() {
+        return new Step();
+    }
 
     /**
      * Create an instance of {@link FlowControls.FlowControl.Response }
