@@ -48,7 +48,7 @@ public class DefaultFlowControlProcess implements IFlowControlProcess{
                     throw new GeneralException("Activity not found");
                 }
             }
-            
+            return getVar("payload");
         } catch (Exception e) {
             e.printStackTrace();
         }

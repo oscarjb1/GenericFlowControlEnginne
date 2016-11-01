@@ -19,6 +19,12 @@ public class Step {
     protected String name;
     @XmlAttribute(name = "class")
     protected String clazz;
+    @XmlAttribute(name = "outputVar")
+    protected String outputVar;
+    @XmlAttribute(name = "inputVar")
+    protected String inputVar;
+    
+    
 
     public String getName() {
         return name;
@@ -42,6 +48,22 @@ public class Step {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public String getOutputVar() {
+        return outputVar;
+    }
+
+    public void setOutputVar(String outputVar) {
+        this.outputVar = outputVar;
+    }
+
+    public String getInputVar() {
+        return inputVar;
+    }
+
+    public void setInputVar(String inputVar) {
+        this.inputVar = inputVar;
     }
     
 }

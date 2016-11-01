@@ -15,8 +15,8 @@
         
         <FlowControl name="jsonCurrency" discriminator="pair" complexDiscriminatorClass="" cannonicalConverterClass="com.pr.gfce.converter.impl.JSONExchangeCannonical" inputType="json" configFile="configuration.properties">
             <Step name="runningBam" class="com.pr.gfce.controls.BAMRunningControlProcess" />
-            <Step name="QueryExchange" class="com.pr.gfce.controls.ExchangeControlProcess" />
+            <Step name="QueryExchange" class="com.pr.gfce.controls.ExchangeControlProcess" outputVar="payload"/>
             <Step name="completedBam" class="com.pr.gfce.controls.BAMCompletedControlProcess" />
-            <Step name="response" class="com.pr.gfce.controls.BAMCompletedControlProcess" />
+            <Step name="response" class="com.pr.gfce.controls.BAMCompletedControlProcess" inputVar="payload" outputVar="payload"/>
         </FlowControl>
 </FlowControls>
