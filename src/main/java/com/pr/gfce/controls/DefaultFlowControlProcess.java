@@ -35,6 +35,7 @@ public class DefaultFlowControlProcess implements IFlowControlProcess{
                 Object payload = converter.converte(vars.get("payload"));
                 setVar("payload",payload);
             }
+            
             Object returns = null;
             for(Object obj : flowControls.getConverterOrRestCallOrResponse()){
                 if (obj instanceof Step){

@@ -9,6 +9,8 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import java.util.Map;
 import java.util.Set;
+import org.json.JSONObject;
+import org.json.XML;
 
 /**
  * @author Oscar Blancarte
@@ -43,5 +45,11 @@ public class JsonConverter {
             return entry.getKey();
         }
         throw new RuntimeException("No se encontró el elemento raíz");
+    }
+    
+    public static String fromXML(String xml){
+        JSONObject xmlObject = XML.toJSONObject(xml);
+        String json = xmlObject.toString(4);
+        return json;
     }
 }
